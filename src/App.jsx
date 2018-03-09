@@ -9,11 +9,13 @@ class App extends Component {
       count: 0,
       text: '',
       priority: '1',
+      editEnabled: false,
       todoList: []
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleAddTodo = this.handleAddTodo.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   handleChange(event) {
@@ -26,7 +28,8 @@ class App extends Component {
     const todoAdd = {
       count: this.state.count,
       text: this.state.text,
-      priority: this.state.priority
+      priority: this.state.priority,
+      editEnabled: this.state.editEnabled
     };
 
     const newList = this.state.todoList.slice();
@@ -52,7 +55,7 @@ class App extends Component {
     const toEditList = [...this.state.todoList];
 
     var newIndex = toEditList.findIndex(singleTodo => singleTodo.count == count);
-    toEditList.splice(newIndex, 1, )
+    toEditList.splice(newIndex, 1, singleTodo)
   }
 
   render() {
@@ -110,6 +113,8 @@ class App extends Component {
                 <AddArea list={list}
                   key={list.count}
                   handleDelete={this.handleDelete}
+                  handleEdit={this.handleEdit}
+                  handleChange={this.handleChange}
                 />)}
             </div>
           </div>
