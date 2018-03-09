@@ -11,7 +11,8 @@ export default class AddArea extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
-    this.handleUpdate= this.handleUpdate.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleSuccess = this.handleSuccess.bind(this);
   }
 
   handleChange(event) {
@@ -22,6 +23,9 @@ export default class AddArea extends React.Component {
 
 
   getPriority() {
+    if (this.state.successEnabled === true) {
+      return 'list-group-item-success'
+    }
     if (this.state.priority === '3') {
       return 'list-group-item-danger';
     }
@@ -31,6 +35,7 @@ export default class AddArea extends React.Component {
     if (this.state.priority === '1') {
       return 'list-group-item-info';
     }
+
   }
 
   handleDelete() {
@@ -45,6 +50,10 @@ export default class AddArea extends React.Component {
     const update = this.state;
     update.editEnabled = false;
     this.setState({ update });
+  }
+
+  handleSuccess() {
+    this.setState({ successEnabled: true });
   }
 
   render() {
@@ -79,7 +88,7 @@ export default class AddArea extends React.Component {
               name="submit"
               className="update-todo btn btn-success"
               onClick={this.handleUpdate}
-              >Save</button>
+              >Update</button>
           </div>
       </div>
       );
@@ -89,6 +98,7 @@ export default class AddArea extends React.Component {
       <div className={'list-group-item ' + this.getPriority()} role="alert">
           <input
             type='checkbox'
+            onClick={this.handleSuccess}
           />
           {this.state.text}
           <a

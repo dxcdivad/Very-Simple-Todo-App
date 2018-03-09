@@ -10,12 +10,14 @@ class App extends Component {
       text: '',
       priority: '1',
       editEnabled: false,
+      successEnabled: false,
       todoList: []
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleAddTodo = this.handleAddTodo.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    
   }
 
   handleChange(event) {
@@ -29,7 +31,8 @@ class App extends Component {
       count: this.state.count,
       text: this.state.text,
       priority: this.state.priority,
-      editEnabled: this.state.editEnabled
+      editEnabled: this.state.editEnabled,
+      successEnabled: this.state.successEnabled
     };
 
     const newList = this.state.todoList.slice();
